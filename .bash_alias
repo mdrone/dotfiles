@@ -1,0 +1,32 @@
+#!/bin/bash
+#Quidquid latine dictum sit, altum sonatur. 
+#- Whatever is said in Latin sounds profound.
+
+alias wget='wget -c'
+alias vim='vim -p'
+
+alias mount='mount -v'
+alias umount='umount -v'
+
+alias chown='chown -c --preserve-root'
+alias chmod='chmod -c --preserve-root'
+alias chgrp='chgrp -c --preserve-root'
+
+alias df='df -h'
+alias du='du -h'
+alias l='ls --color=auto -lthir'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto -Ah'
+alias rm='rm --preserve-root -vf'
+alias rr='rm -rvf --preserve-root'
+alias cr='cp -rv'
+alias cp='cp -v'
+alias mv='mv -v'
+alias rmdir='rmdir -v'
+alias mkdir='mkdir -vp'
+
+alias gdb='gdb -q'
+
+alias update="su -c 'pacman -Syu'"
+alias p="pacman"
+
