@@ -43,5 +43,10 @@ alias chown='chown -c --preserve-root'
 alias chmod='chmod -c --preserve-root'
 alias chgrp='chgrp -c --preserve-root'
 
+alias script='script_dirname=script_record_$(date | sed -e "s: :_:g" -e "s,:,-,g") && mkdir $script_dirname && cd $script_dirname && script -t 2> timingfile'
+alias scriptreplay='scriptreplay timingfile'
+
 alias update="su -c 'pacman -Syu'"
 alias p="pacman"
+
+alias git_keeplocal='git rm --cached'
