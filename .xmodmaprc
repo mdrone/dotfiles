@@ -1,0 +1,26 @@
+!clear Lock' -e 'keycode 0x42 = Escape
+
+!keycode  16 = 7 slash 7 slash braceleft seveneighths braceleft
+!keycode  17 = 8 parenleft 8 parenleft bracketleft trademark bracketleft
+!keycode  18 = 9 parenright 9 parenright bracketright plusminus bracketright
+!keycode  19 = 0 equal 0 equal braceright degree braceright
+!keycode  20 = ssharp question ssharp question backslash questiondown U1E9E
+!
+!keycode  34 = udiaeresis Udiaeresis udiaeresis Udiaeresis diaeresis diaeresis diaeresis
+!
+!keycode  47 = odiaeresis Odiaeresis odiaeresis Odiaeresis doubleacute doubleacute doubleacute
+!keycode  48 = adiaeresis Adiaeresis adiaeresis Adiaeresis asciicircum asciicircum asciicircum
+
+!
+! custom Mapping
+!
+keycode  16 = 7 ssharp 7 ssharp adiaeresis seveneighths adiaeresis
+keycode  17 = 8 udiaeresis 8 udiaeresis odiaeresis trademark odiaeresis
+keycode  18 = 9 Udiaeresis 9 Udiaeresis Odiaeresis plusminus Odiaeresis
+keycode  19 = 0 equal 0 equal Adiaeresis degree Adiaeresis
+keycode  20 = slash question slash question backslash questiondown U1E9E
+
+keycode  34 = parenleft parenright parenleft parenright diaeresis diaeresis diaeresis
+
+keycode  47 = bracketleft bracketright bracketleft bracketright doubleacute doubleacute doubleacute
+keycode  48 = braceleft braceright braceleft braceright asciicircum asciicircum asciicircum
