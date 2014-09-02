@@ -1,0 +1,41 @@
+xterm*termName: xterm-256color
+XTerm*locale: true
+XTerm*metaSendsEscape: true
+XTerm*background:		black
+XTerm*foreground:		green
+
+*rxvt*metaSendsEscape: true
+
+urxvt*termName: rxvt-256color
+urxvt*locale: true
+urxvt*loginShell:         true
+urxvt*metaSendsEscape: true
+urxvt*background:		black
+urxvt*foreground:		green
+urxvt*loginShell:         true
+urxvt*scrollBar:         false
+!URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
+urxvt*shading:    10
+urxvt*transparent: true
+UXTerm*trimSelection: true
+URxvt.perl-ext-common:  default,matcher,tabbed,url-select,keyboard-select,clipboard,font-size
+URxvt.url-select.launcher:  /usr/bin/luakit
+URxvt.url-select.underline: true
+URxvt.matcher.button:   1
+
+!Search Select
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+
+!Copy Paste
+URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755 : false
+
+!Font resize
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
+URxvt.font-size.step: 4
