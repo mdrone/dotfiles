@@ -14,11 +14,11 @@
 !
 ! custom Mapping
 !
-keycode  16 = 7 ssharp 7 ssharp adiaeresis seveneighths adiaeresis
+keycode  16 = 7 slash 7 slash adiaeresis seveneighths adiaeresis
 keycode  17 = 8 udiaeresis 8 udiaeresis odiaeresis trademark odiaeresis
 keycode  18 = 9 Udiaeresis 9 Udiaeresis Odiaeresis plusminus Odiaeresis
 keycode  19 = 0 equal 0 equal Adiaeresis degree Adiaeresis
-keycode  20 = slash question slash question backslash questiondown U1E9E
+keycode  20 = ssharp question ssharp question backslash questiondown U1E9E
 
 keycode  34 = parenleft parenright parenleft parenright diaeresis diaeresis diaeresis
 
