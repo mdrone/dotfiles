@@ -1,11 +1,14 @@
 #!/usr/bin/sh
 
 cp .alias ~/
+cp .environment ~/
 cp .bashrc ~/
+cp .helpers ~/
+cp .emacs ~/
+cp .radare2rc ~/
 cp -r .config ~/
 cp custom.map ~/
 cp .gdbinit ~/
-cp .git ~/
 cp .tmux.conf ~/
 cp .vimrc ~/
 cp .Xdefaults ~/

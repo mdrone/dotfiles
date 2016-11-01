@@ -7,7 +7,12 @@
 
 umask 077
 
+#Standard
+#PS1='[\u@\h \W]\$ '
+
+
 PS1='\[\033[0;37m\][$?]-\[\033[0;32m\][\!]-\[\e[31m\][\t]-\[\e[32m\][\h]-\[\e[33m\][\w]\n\[\033[0;35m\] \$\[\e[0m\] '
+
 
 #news feed
 if [ "$PS1" ]; then
@@ -39,13 +44,24 @@ if [ -f $HOME/.alias ]; then
     source $HOME/.alias
 fi
 
+if [ -f $HOME/.helpers ]; then
+    source $HOME/.helpers
+fi
+
 if [ -f $HOME/.environment ]; then
     source $HOME/.environment
 fi
 
-set -o vi
-bind -m vi-command ".":insert-last-argument
-bind -m vi-insert "\C-l.":clear-screen
-bind -m vi-insert "\C-a.":beginning-of-line
-bind -m vi-insert "\C-e.":end-of-line
-bind -m vi-insert "\C-w.":backward-kill-word
+if [ -f $HOME/perl5/perlbrew/etc/bashrc ]; then
+    source $HOME/perl5/perlbrew/etc/bashrc
+fi
+
+#set -o vi
+#bind -m vi-command ".":insert-last-argument
+#bind -m vi-insert "\C-l.":clear-screen
+#bind -m vi-insert "\C-a.":beginning-of-line
+#bind -m vi-insert "\C-e.":end-of-line
+#bind -m vi-insert "\C-w.":backward-kill-word
+
+#Debug-mode
+#set -xv

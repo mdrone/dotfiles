@@ -1,5 +1,43 @@
 #!/bin/bash
 
+xclip="xclip -selection c"
+
+alias router="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "
+
+alias pdfpcleft="pdfpc -n left "
+
+alias radare2="radare2 -w "
+
+alias scast="ffcast -vv rec screencast.mkv"
+alias concast="mkdir output && mplayer -ao null screencast.mkv -vo jpeg:outdir=output && convert output/* output.gif"
+
+alias :q='echo quit'
+
+alias iptables_allow="su -c 'iptables -I INPUT -m state --state NEW -p tcp --dport 8888 -j ACCEPT'"
+alias iptables_reload="su -c 'systemctl reload iptables'"
+
+alias rotate13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
+
+alias dvbtprobe="su -c ' modprobe dvb_usb_rtl28xxu'"
+alias rmdvbtprobe="su -c ' rmmod dvb_usb_rtl28xxu'"
+
+alias less='less -R'
+alias vless='vimpager'
+
+alias poorprox='ssh -f -C2qTnN -D 1080 -l root -p 22 192.168.1.1'
+
+alias disauto='xrandr --auto --output VGA1 --auto --right-of LVDS1'
+alias dishome='xrandr --output VGA1 --mode 1680x1050 --right-of LVDS1 --noprimary'
+alias dispres='xrandr --output VGA1 --mode 1024x768 --right-of LVDS1'
+alias disclone='xrandr --output VGA1 --mode 1680x1050 --same-as LVDS1'
+alias disHS1='xrandr --output VGA1 --mode 1024x768 --same-as LVDS1'
+alias disHS2='xrandr -fb 1024x768 --output VGA1 --mode 1024x768 --panning 1600x0'
+alias disHS3='xrandr --output VGA1 --mode 1024x768 --scale 1.4x1.17 --same-as LVDS1'
+alias disHS4='xrandr --output VGA1 --mode 1024x768 --scale 0.71x0.85 --same-as LVDS1'
+alias disoff='xrandr --output VGA1 --off'
+
+alias usbnet='su -c "ip addr add 192.168.2.14/24 dev usb0 && ip link set usb0 up"'
+
 alias gdb='gdb -q'
 alias gcc='gcc -fdiagnostics-color=auto'
 alias grep='grep --color'
@@ -25,6 +63,7 @@ alias chgrp='chgrp -c --preserve-root'
 
 alias df='df -h'
 alias du='du -h'
+alias du1='du -hd 1'
 alias l='ls --color=auto -lthir'
 alias ll='ls -l --color=auto'
 alias ls='ls --color=auto -Ah'
@@ -36,19 +75,56 @@ alias cp='cp -v'
 alias mv='mv -v'
 alias rmdir='rmdir -v'
 alias mkdir='mkdir -vp'
-alias mount='mount -v'
-alias umount='umount -v'
-
-alias chown='chown -c --preserve-root'
-alias chmod='chmod -c --preserve-root'
-alias chgrp='chgrp -c --preserve-root'
-
 alias script='script_dirname=script_record_$(date | sed -e "s: :_:g" -e "s,:,-,g") && mkdir $script_dirname && cd $script_dirname && script -t 2> timingfile'
 alias scriptreplay='scriptreplay timingfile'
 
+alias record_audio='record_dirname=record_$(date | sed -e "s: :_:g" -e "s,:,-,g") && mkdir $record_dirname && cd $record_dirname && arecord -f dat -t raw | oggenc -r -o ${record_dirname}_ogg -'
+
 alias gscat='gs -dBatch -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$(date | sed -e "s: :_:g" -e "s,:,-,g")_output.pdf'
+alias alsarestore='alsactl -f /var/lib/alsa/asound.state restore'
+
+alias nyancat='telnet nyancat.dakko.us'
 
 alias update="su -c 'pacman -Syu'"
 alias p="pacman"
+alias cower="cower -c"
 
+# pacman/yaourt aliases
+#alias pac="sudo /usr/bin/pacman -S"                 # default action    - install one or more packages
+#alias paca="/usr/bin/yaourt -S"                     # default yaourt action - install one or more packages including AUR
+#alias pacu="/usr/bin/yaourt -Syua"                  # '[u]pdate'        - upgrade all packages to their newest version
+#alias pacr="sudo /usr/bin/yaourt -Rs"               # '[r]emove'        - uninstall one or more packages
+#alias pacs="/usr/bin/pacman -Ss"                    # '[s]earch'        - search for a package using one or more keywords
+#alias pacys="/usr/bin/yaourt -Ss"                   # '[y]aourt [s]earch'   - search for a package or a PKGBUILD using one or more keywords
+#alias paci="/usr/bin/yaourt -Si"                    # '[i]nfo'      - show information about a package
+#alias paclo="/usr/bin/pacman -Qdt"                  # '[l]ist [o]rphans'    - list all packages which are orphaned
+#alias pacc="sudo /usr/bin/pacman -Scc"              # '[c]lean cache'   - delete all not currently installed package files
+#alias paclf="/usr/bin/pacman -Ql"                   # '[l]ist [f]iles'  - list all files installed by a given package
+#alias pacexpl="/usr/bin/yaourt -D --asexplicit"     # 'mark as [expl]icit'  - mark one or more packages as explicitly installed 
+#alias pacimpl="/usr/bin/yaourt -D --asdeps"         # 'mark as [impl]icit'  - mark one or more packages as non explicitly installed
+
+alias yupyup="yaourt -S \$(cower --update | awk '{print \$2}' | tr '\n' ' ')"
+
+# '[r]emove [o]rphans' - recursively remove ALL orphaned packages
+alias pacro="/usr/bin/pacman -Qtdq > /dev/null && sudo /usr/bin/pacman -Rs \$(/usr/bin/pacman -Qtdq | sed -e ':a;N;$!ba;s/\n/ /g')"
+
+# git commands
 alias git_keeplocal='git rm --cached'
+#alias gb='git branch -a -v'
+#alias gs='git status'
+#alias gd='git diff | mate'
+#alias gca='git commit -av'
+alias gcia='git commit -v -a -i'
+#alias grm='git ls-files --deleted | xargs git rm'
+#alias gcm='git checkout master'
+#alias gpr='git pull --rebase'
+#alias gspr='git stash; gpr; git stash apply'
+#alias pull='git pull --rebase'
+#alias push='git push'
+#alias gre='git rebase master'
+#alias gitl='git log --pretty=format:"%h %Cblue %an %Cred %s"'
+
+alias gpull='git pull'
+alias gpush='git push origin master'
+
+#echo 16 i 2 o FF p | dc

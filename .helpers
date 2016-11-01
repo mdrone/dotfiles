@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+function touchpadon  { /usr/bin/xinput --enable $(xinput --list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}') ; echo "touchpad enabled";}
+function touchpadoff  { /usr/bin/xinput --disable $(xinput --list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}') ; echo "touchpad disabled";}
+
+
+function translate () {
+    if [[ $# < 1 ]]
+    then
+        echo translate [[keyword]]
+    else
+        url="http://www.dict.cc/englisch-deutsch/"
+        ext=".html"
+        w3m "${url}${1}${ext}"
+    fi
+}
+

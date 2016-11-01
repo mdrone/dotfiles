@@ -11,6 +11,7 @@
 #  unset f
 #fi
 
+#source .bashrc
 
 # set german keyboard layout (disable caps lock)
 # setxkbmap -layout de & #-option ctrl:nocaps &&
@@ -30,14 +31,10 @@ setterm -blank 0 -powerdown 0
 #xcompmgr -c -f -D 5 &
 
 
-#/usr/lib/systemd/systemd --user &
-
-
 #SLiM Menu /etc/slim.conf
 #exec $1
 
 DEFAULT_WM=awesome
-#DEFAULT_WM=startxfce4
 
 case $1 in
 dwm)

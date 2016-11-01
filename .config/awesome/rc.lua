@@ -16,7 +16,7 @@ local scratch = require("scratch")
 -- Widget midget
 vicious = require("vicious")
 -- Widget midget
-homedir = "/home/"
+homedir = "/home/cl0wn"
 
 -- Initialize widget
 -- Register widget
@@ -144,7 +144,7 @@ beautiful.init(homedir .. "/.config/awesome/themes/default/theme.lua")
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvtc"
 myshell = "zsh"
-executemultiplexer = "\"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME\""
+executemultiplexer = "\"(tmux -q has-session && exec tmux attach-session -d -t$USER@$HOSTNAME) || exec tmux new-session -n$USER -s$USER@$HOSTNAME\""
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -202,6 +202,7 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 myawesomesysmenu = {
+	{ "screensvr", terminal .. " -e 'cmatrix'" },
 	{ "shutdown", "shutdown now" },
 	{ "reboot", "reboot" },
 	{ "lock", "i3lock -i " .. homedir .."/Pictures/lockscreen.png -n" } 
@@ -211,7 +212,7 @@ myawesomeremotemenu = {
 	{ "putty", "putty" }
 }
 myawesomemultimediamenu = {
-	{ "IP-TV-OG", "vlc " .. homedir .. "/Desktop/channels.m3u" },
+	{ "DVB-TV", "vlc " .. homedir .. "/tv/dvb.xspf" },
 	{ "Music", terminal .. " -e 'ncmpc'" },
 	{ "Video", "gnome-mplayer" }
 }
@@ -229,7 +230,9 @@ myawesomenetmenu = {
 }
 myawesomeetcmenu = {
 	{ "vBox", "virtualbox" },
+	{ "file", "thunar" },
 	{ "pdfviewer", "evince" },
+	{ "restart tor", terminal .. " -e su -c 'systemctl restart tor'" }
 }
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
 									{ "etc", myawesomeetcmenu },
@@ -415,13 +418,21 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,           }, "Return", function () awful.util.spawn("urxvt -e " .. "bash" .. " -c " .. executemultiplexer) end),
+    awful.key({ modkey,           }, "s", function () awful.util.spawn("terminator -e screen") end),
     --awful.key({ modkey,           }, "s", function () awful.util.spawn(terminal .. " -e screen w3m") end),
     awful.key({ modkey,           }, "^",      function () scratch.drop(terminal .. " -e " .. myshell, "top", "center", 0.7, 0.25, "sticky") end),
-    awful.key({ modkey, "Shift"   }, "w", 	  function () awful.util.spawn(terminal .. " -e weechat-curses") end),
+    awful.key({ modkey, "Shift"   }, "o", 	  function () awful.util.spawn("opera") end),
+    awful.key({ modkey, "Shift"   }, "w", 	  function () awful.util.spawn("urxvt -e " .. "bash -c " .. "\"tmux new-session -n weechat -s weechat" .. " weechat-curses\"") end),
     awful.key({ modkey,           }, "d", 	  function () awful.util.spawn(terminal .. " -e dvtm") end),
+    awful.key({                   }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 3>/dev/null'") end),
+    --awful.key({ modkey, "Shift"   }, "p", 	  function () awful.util.spawn(homedir .. "/Downloads/tor-browser_en-US/Browser/start-tor-browser") end),
+    awful.key({ modkey,           }, "v", 	  function () awful.util.spawn(terminal .. " -e ranger") end),
+    awful.key({ modkey, "Shift"   }, "v", 	  function () awful.util.spawn(terminal .. " -e vifm") end),
+    --awful.key({ modkey, "Shift"   }, "u", 	  function () awful.util.spawn("uzbl-tabbed") end),
     awful.key({ modkey, "Shift"   }, "u", 	  function () awful.util.spawn("luakit") end),
     awful.key({ modkey, "Shift"   }, "m", 	  function () awful.util.spawn(terminal .. " -e mutt") end),
     awful.key({ modkey, "Shift"   }, "f", 	  function () awful.util.spawn("firefox") end),
+    awful.key({ modkey, "Control" }, "l", 	  function () awful.util.spawn("i3lock") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -538,14 +549,32 @@ awful.rules.rules = {
       --end },
     --{ rule = { class = "URxvt" },
     --properties = { tag = tags[1][2] } },
+    { rule = { class = "MPlayer" },
+      properties = { floating = true } },
+    { rule = { class = "pinentry" },
+      properties = { floating = true } },
+    { rule = { class = "gimp" },
+      properties = { floating = true } },
     { rule = { class = "Uzbl-tabbed" },
+      properties = { tag = tags[1][1] } },
+    { rule = { class = "Opera" },
       properties = { tag = tags[1][1] } },
     { rule = { class = "Firefox" },
       properties = { tag = tags[1][1] } },
     { rule = { class = "Thunderbird" },
       properties = { tag = tags[1][1] } },
+    { rule = { class = "Hexchat" },
+      properties = { tag = tags[1][2] } },
+    { rule = { class = "Pidgin" },
+      properties = { tag = tags[1][2] } },
+    { rule = { class = "Skype" },
+      properties = { maximized_vertical = true, maximized_horzontal = true } },
+    { rule = { class = "Rhythmbox" },
+      properties = { tag = tags[1][3] } },
     { rule = { class = "Vlc" },
       properties = { tag = tags[1][3] } },
+    { rule = { class = "Eclipse" },
+      properties = { tag = tags[1][2] } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { maximized_vertical = true, maximized_horzontal = true, tag = tags[1][2] } },
