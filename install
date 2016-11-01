@@ -15,3 +15,4 @@ cp .Xdefaults ~/
 cp .xinitrc ~/
 cp .xmodmaprc ~/
 cp .zshrc ~/
+cp .xbindkeysrc.scm ~/
