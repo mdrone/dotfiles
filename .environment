@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+export WINEARCH=win32
+export WINEPREFIX=$HOME/.wine32
+
+export NDK_DIR="/opt/android-ndk/"
+export ANDROID_HOME="$HOME/Android/Sdk/";
+export GOPATH="$HOME/go";
+export GEM_HOME="$HOME/.gem/ruby/2.3.0"
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5";
+export PERL_MB_OPT="--install_base $HOME/perl5";
+export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
+export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB";
+export PATH=$PATH:/home/cl0wn/omnet/omnetpp-4.6/bin
+export PATH=$PATH:/home/cl0wn/omnet/omnetpp-5.0b3/bin
+export PATH="$HOME/.gem/ruby/2.3.0/bin:$HOME/perl5/bin:$HOME/bin/bf/:$HOME/bin:$HOME/.gem/ruby/2.1.0/bin:$HOME/.babel/lib:$PATH";
+#/opt/devkitpro/devkitARM/bin/:
+export CLASSPATH=".:/usr/share/eclipse/plugins/:/usr/share/java/commons-codec/*:/usr/share/java/apache-ant/:/usr/share/java/miglayout/*:/usr/share/java/mysql/*";
+
+export PULSE_LATENCY_MSEC=60
+#export XDG_CONFIG_HOME="$HOME/.config";
