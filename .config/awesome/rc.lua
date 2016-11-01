@@ -10,7 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local scratch = require("scratch")
+--local scratch = require("scratch")
 
 
 -- Widget midget
