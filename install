@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+
+cp .alias ~/
+cp .bashrc ~/
+cp -r .config ~/
+cp custom.map ~/
+cp .gdbinit ~/
+cp .git ~/
+cp .tmux.conf ~/
+cp .vimrc ~/
+cp .Xdefaults ~/
+cp .xinitrc ~/
+cp .xmodmaprc ~/
+cp .zshrc ~/
