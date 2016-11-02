@@ -6,6 +6,6 @@
 (xbindkey '("XF86AudioPrev") "mpc prev")
 (xbindkey '("XF86AudioStop") "mpc stop")
 (xbindkey '("XF86AudioPlay") "mpc toggle")
-(xbindkey '("XF86Launch1") "termite -e bash -c 'w3m -B -N'")
+(xbindkey '("XF86Launch1") "termite -e 'bash -c \'w3m -B -N\''")
 ;(xbindkey '("XF86Back") "H")
 ;(xbindkey '("XF86Forward") "F")
