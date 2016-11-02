@@ -143,6 +143,7 @@ beautiful.init(homedir .. "/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvtc"
+terminal = "termite"
 myshell = "zsh"
 executemultiplexer = "\"(tmux -q has-session && exec tmux attach-session -d -t$USER@$HOSTNAME) || exec tmux new-session -n$USER -s$USER@$HOSTNAME\""
 editor = os.getenv("EDITOR") or "vim"
@@ -417,7 +418,7 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn("urxvt -e " .. "bash" .. " -c " .. executemultiplexer) end),
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal .. " -e " .. "'bash" .. " -c " .. executemultiplexer .. "'") end),
     awful.key({ modkey,           }, "s", function () awful.util.spawn("terminator -e screen") end),
     --awful.key({ modkey,           }, "s", function () awful.util.spawn(terminal .. " -e screen w3m") end),
     awful.key({ modkey,           }, "^",      function () scratch.drop(terminal .. " -e " .. myshell, "top", "center", 0.7, 0.25, "sticky") end),
