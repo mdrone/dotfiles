@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xclip="xclip -selection c"
+alias xclip="xclip -selection c"
 
 alias router="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "
 
