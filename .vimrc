@@ -1,3 +1,6 @@
+":set nocompatible
+:set path+=**
+:set wildmenu
 :set number
 :set backspace=indent,eol,start
 :syntax on
