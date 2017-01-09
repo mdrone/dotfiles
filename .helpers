@@ -5,7 +5,7 @@ function touchpadoff  { /usr/bin/xinput --disable $(xinput --list | grep -Eo 'To
 
 
 function translate () {
-    if [[ $# < 1 ]]
+    if [[ $# -lt 1 ]]
     then
         echo translate [[keyword]]
     else
@@ -13,5 +13,28 @@ function translate () {
         ext=".html"
         w3m "${url}${1}${ext}"
     fi
+}
+
+function texitems {
+    echo "\\begin{itemize}"
+    for i in ${1[*]}
+    do
+        echo "    \\item[] $i"
+    done
+    echo "\\end{itemize}"
+}
+
+function texgraph {
+    _file=$1
+    _caption=$2
+    if [[ -z "${_caption// }" ]]
+    then
+        _caption=$_file
+    fi
+    echo "\\begin{figure}[ht!]"
+    echo "    \\centering"
+    echo "    \\includegraphics[width=0.5\\textwidth]{$_file}"
+    echo "    \\caption{$_caption}"
+    echo "\\end{figure}"
 }
 
